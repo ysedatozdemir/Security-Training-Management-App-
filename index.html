@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;">
+    <title>Pergamon Güvenlik Okulu - Yönetim Sistemi</title>
+    <link rel="stylesheet" href="./public/css/default.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/themes/material_green.min.css">
+
+    <style>
+        .filter-tab {
+            transition: all 0.2s ease-in-out !important;
+            cursor: pointer !important;
+            user-select: none !important;
+        }
+
+        .filter-tab:hover {
+            background-color: rgba(255, 255, 255, 0.8) !important;
+            transform: translateY(-1px) !important;
+        }
+
+        .filter-tab.active {
+            background: white !important;
+            color: #16a34a !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+            font-weight: 600 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <!-- Logo -->
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">GÜ</div>
+                    <div class="logo-text">
+                        <h1>Pergamon Güvenlik Okulu</h1>
+                        <p>Yönetim Sistemi</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <!--li class="nav-item">
+                        <a href="#" class="nav-link active" data-page="dashboard">
+                            <i class="fas fa-home"></i>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li-->
+                    <!--li class="nav-item">
+                        <a href="#" class="nav-link" data-page="students">
+                            <i class="fas fa-users"></i>
+                            <span class="nav-text">Öğrenciler</span>
+                        </a>
+                    </li-->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-page="terms">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span class="nav-text">Dönemler</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-page="payments">
+                            <i class="fas fa-credit-card"></i>
+                            <span class="nav-text">Ödemeler</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-page="notifications">
+                            <i class="fas fa-bell"></i>
+                            <span class="nav-text">Bildirimler</span>
+                        </a>
+                    </li>
+                    <!--li class="nav-item">
+                        <a href="#" class="nav-link" data-page="settings">
+                            <i class="fas fa-cog"></i>
+                            <span class="nav-text">Ayarlar</span>
+                        </a>
+                    </li-->
+                </ul>
+            </nav>
+
+            <!-- Collapse Button -->
+            <div class="sidebar-footer">
+                <button class="collapse-btn" id="collapseBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-content">
+                    <div class="header-info">
+                        <h1 id="pageTitle">Dashboard</h1>
+                        <p id="pageDescription">Genel sistem durumunu görüntüleyin</p>
+                    </div>
+
+                    <div class="header-actions">
+                        <!--div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Ara..." id="searchInput">
+                        </div-->
+                        <button class="notification-btn" onclick="switchPage('notifications')">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge"></span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Dashboard Content -->
+                <div class="page-content active" id="dashboard-content">
+                    <!-- Stats Grid -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-info">
+                                <h3>Toplam Öğrenci</h3>
+                                <p class="stat-value">245</p>
+                                <span class="stat-trend positive">
+                                    <i class="fas fa-trending-up"></i>
+                                    +12% bu ay
+                                </span>
+                            </div>
+                            <div class="stat-icon users">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-info">
+                                <h3>Aktif Dönemler</h3>
+                                <p class="stat-value">8</p>
+                            </div>
+                            <div class="stat-icon calendar">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-info">
+                                <h3>Yeni Öğrenciler</h3>
+                                <p class="stat-value">23</p>
+                                <span class="stat-trend positive">
+                                    <i class="fas fa-trending-up"></i>
+                                    +8% geçen aya göre
+                                </span>
+                            </div>
+                            <div class="stat-icon new-users">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-info">
+                                <h3>Bekleyen Ödemeler</h3>
+                                <p class="stat-value">15,750 ₺</p>
+                            </div>
+                            <div class="stat-icon payments">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts and Activities -->
+                    <div class="dashboard-grid">
+                        <!-- Chart Area -->
+                        <div class="chart-card">
+                            <h3>Aylık Kayıt Trendi</h3>
+                            <div class="chart-placeholder">
+                                <i class="fas fa-chart-line"></i>
+                                <p>Grafik burada görüntülenecek</p>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activities -->
+                        <div class="activities-card">
+                            <h3>Son Aktiviteler</h3>
+                            <div class="activities-list">
+                                <div class="activity-item">
+                                    <div class="activity-dot enrollment"></div>
+                                    <div class="activity-info">
+                                        <h4>Ahmet Yılmaz</h4>
+                                        <p>Yeni kayıt</p>
+                                        <span>2 saat önce</span>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-dot payment"></div>
+                                    <div class="activity-info">
+                                        <h4>Fatma Kaya</h4>
+                                        <p>Ödeme yapıldı - 1500 TL</p>
+                                        <span>3 saat önce</span>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-dot completion"></div>
+                                    <div class="activity-info">
+                                        <h4>Mehmet Demir</h4>
+                                        <p>Dönem tamamlandı</p>
+                                        <span>1 gün önce</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alerts -->
+                    <div class="alerts-section">
+                        <h3>
+                            <i class="fas fa-exclamation-circle"></i>
+                            Dikkat Gereken Durumlar
+                        </h3>
+                        <div class="alerts-grid">
+                            <div class="alert-card danger">
+                                <h4>Geciken Ödemeler</h4>
+                                <p class="alert-value">7 Öğrenci</p>
+                            </div>
+                            <div class="alert-card warning">
+                                <h4>Dönem Bitiş Uyarısı</h4>
+                                <p class="alert-value">3 Dönem</p>
+                            </div>
+                            <div class="alert-card info">
+                                <h4>Bekleyen Başvurular</h4>
+                                <p class="alert-value">12 Başvuru</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms Content -->
+                <div class="page-content" id="terms-content">
+                    <!-- Terms Header -->
+                    <div class="page-header">
+                        <div class="page-header-info">
+                            <h2>Dönemler</h2>
+                            <p>Eğitim dönemlerini yönetin</p>
+                        </div>
+                        <button class="btn btn-primary" onclick="addNewTerm()">
+                            <i class="fas fa-plus"></i>
+                            Yeni Dönem
+                        </button>
+                    </div>
+
+                    <!-- Advanced Filters -->
+                    <div class="filters-section">
+                        <!-- Status Filters -->
+                        <div class="filter-group">
+                            <label class="filter-label">Durum:</label>
+                            <div class="filter-tabs">
+                                <button class="filter-tab active" data-filter="all" data-type="status">Tümü</button>
+                                <button class="filter-tab" data-filter="Aktif" data-type="status">Aktif</button>
+                                <button class="filter-tab" data-filter="Yaklaşan" data-type="status">Yaklaşan</button>
+                                <button class="filter-tab" data-filter="Tamamlandı"
+                                    data-type="status">Tamamlandı</button>
+                            </div>
+                        </div>
+
+                        <!-- Type Filters -->
+                        <div class="filter-group">
+                            <label class="filter-label">Tür:</label>
+                            <div class="filter-tabs">
+                                <button class="filter-tab active" data-filter="all" data-type="type">Tümü</button>
+                                <button class="filter-tab" data-filter="Temel" data-type="type">Temel</button>
+                                <button class="filter-tab" data-filter="Yenileme" data-type="type">Yenileme</button>
+                            </div>
+                        </div>
+
+                        <!-- Sort Options -->
+                        <div class="filter-group">
+                            <label class="filter-label">Sırala:</label>
+                            <select class="sort-select" id="sortSelect">
+                                <option value="date_newest">En Yeni Başlangıç Tarihi</option>
+                                <option value="date_oldest">En Eski Başlangıç Tarihi</option>
+                                <option value="students_desc">Öğrenci Sayısı (Fazla → Az)</option>
+                                <option value="students_asc">Öğrenci Sayısı (Az → Fazla)</option>
+                                <option value="term_number_desc">Dönem No (Büyük → Küçük)</option>
+                                <option value="term_number_asc">Dönem No (Küçük → Büyük)</option>
+                            </select>
+                        </div>
+
+                        <!-- Search -->
+                        <div class="filter-group">
+                            <label class="filter-label">Ara:</label>
+                            <div class="advanced-search">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Dönem no, tür veya durum ara..." id="termsSearchInput">
+                                <button class="clear-search" id="clearSearch" style="display: none;">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terms Table Card -->
+                    <div class="table-card">
+                        <div class="table-container">
+                            <table class="terms-table" id="termsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Dönem No</th>
+                                        <th>Dönem Türü</th>
+                                        <th>Durum</th>
+                                        <th>Öğrenci Sayısı</th>
+                                        <th>Başlangıç Tarihi</th>
+                                        <th>Bitiş Tarihi</th>
+                                        <th>İşlemler</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="termsTableBody">
+                                    <!-- Terms will be populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Pages (Placeholder) -->
+                <div class="page-content" id="students-content">
+                    <div class="placeholder-content">
+                        <i class="fas fa-users"></i>
+                        <h3>Öğrenciler</h3>
+                        <p>Bu sayfa yakında gelecek...</p>
+                    </div>
+                </div>
+
+                <!-- ODEMELER SAYFASI - TÜM YAPISI -->
+                <div class="page-content" id="payments-content">
+                    <!-- Page Header -->
+                    <div class="page-header">
+                        <div class="page-header-info">
+                            <h2>Ödemeler</h2>
+                            <p>Öğrenci ödemelerini yönetin ve takip edin</p>
+                        </div>
+                        <div class="header-actions">
+                            <button class="btn btn-secondary" onclick="exportPayments()">
+                                <i class="fas fa-download"></i>
+                                Rapor İndir
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Stats Grid -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-card-content">
+                                <div class="stat-info">
+                                    <h3>Toplam Ödeme</h3>
+                                    <div class="stat-value">₺248,750</div>
+                                    <div class="stat-trend positive">
+                                        <i class="fas fa-trending-up"></i>
+                                        +18% bu ay
+                                    </div>
+                                </div>
+                                <div class="stat-icon total-payments">
+                                    <i class="fas fa-coins"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-card-content">
+                                <div class="stat-info">
+                                    <h3>Bekleyen Ödemeler</h3>
+                                    <div class="stat-value">₺52,400</div>
+                                    <div class="stat-trend negative">
+                                        <i class="fas fa-clock"></i>
+                                        23 öğrenci
+                                    </div>
+                                </div>
+                                <div class="stat-icon pending-payments">
+                                    <i class="fas fa-hourglass-half"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-card-content">
+                                <div class="stat-info">
+                                    <h3>Tamamlanan</h3>
+                                    <div class="stat-value">₺196,350</div>
+                                    <div class="stat-trend positive">
+                                        <i class="fas fa-check-circle"></i>
+                                        147 ödeme
+                                    </div>
+                                </div>
+                                <div class="stat-icon completed-payments">
+                                    <i class="fas fa-check-double"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-card-content">
+                                <div class="stat-info">
+                                    <h3>Geciken Ödemeler</h3>
+                                    <div class="stat-value">12</div>
+                                    <div class="stat-trend negative">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        Acil takip
+                                    </div>
+                                </div>
+                                <div class="stat-icon overdue-payments">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filters Section -->
+                    <div class="filters-section">
+                        <div class="filters-grid">
+                            <!-- Öğrenci Arama -->
+                            <div class="filter-group">
+                                <label for="studentSearch">Öğrenci Ara</label>
+                                <input type="text" id="studentSearch" class="filter-input"
+                                    placeholder="Ad, soyad veya TC ile ara..." onkeyup="applyPaymentFilters()"
+                                    style="width: 155px; height: 36px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px;">
+                            </div>
+
+                            <!-- Dönem Filtresi -->
+                            <div class="filter-group">
+                                <label for="termFilter">Dönem</label>
+                                <select id="termFilter" class="filter-select" onchange="applyPaymentFilters()">
+                                    <option value="">Tüm Dönemler</option>
+                                    <!-- JavaScript ile doldurulacak -->
+                                </select>
+                            </div>
+
+                            <!-- Durum Filtresi -->
+                            <div class="filter-group">
+                                <label for="statusFilter">Ödeme Durumu</label>
+                                <select id="statusFilter" class="filter-select" onchange="applyPaymentFilters()">
+                                    <option value="">Tüm Durumlar</option>
+                                    <option value="odendi">Ödendi</option>
+                                    <option value="bekliyor">Bekliyor</option>
+                                    <option value="geciken">Geciken</option>
+                                </select>
+                            </div>
+
+                            <!-- Ödeme Türü -->
+                            <div class="filter-group">
+                                <label for="paymentTypeFilter">Ödeme Türü</label>
+                                <select id="paymentTypeFilter" class="filter-select" onchange="applyPaymentFilters()">
+                                    <option value="">Tümü</option>
+                                    <option value="tam">Tam Ödeme</option>
+                                    <option value="taksit">Taksit</option>
+                                </select>
+                            </div>
+
+                            <!-- Ödeme Yöntemi -->
+                            <div class="filter-group">
+                                <label for="paymentMethodFilter">Ödeme Yöntemi</label>
+                                <select id="paymentMethodFilter" class="filter-select" onchange="applyPaymentFilters()">
+                                    <option value="">Tümü</option>
+                                    <option value="nakit">Nakit</option>
+                                    <option value="kart">Kart</option>
+                                    <option value="havale">Havale</option>
+                                </select>
+                            </div>
+
+                            <!-- Tarih Aralığı -->
+                            <div class="filter-group">
+                                <label for="dateRange">Tarih Aralığı</label>
+                                <input type="text" id="dateRange" class="filter-input"
+                                    placeholder="Tarih aralığı seçin...">
+                            </div>
+
+                            <!-- Filtrele Butonu -->
+                            <div class="filter-group">
+                                <button class="filter-btn" onclick="applyPaymentFilters()">
+                                    <i class="fas fa-search"></i>
+                                    Filtrele
+                                </button>
+                            </div>
+
+                            <!-- Temizle Butonu -->
+                            <div class="filter-group">
+                                <button class="filter-btn" onclick="clearPaymentFilters()" style="background: #6b7280;">
+                                    <i class="fas fa-times"></i>
+                                    Temizle
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payments Table Section -->
+                    <div class="payments-table-section">
+                        <div class="table-header">
+                            <div class="table-title">
+                                <i class="fas fa-table"></i>
+                                <span>Ödeme Listesi</span>
+                                <span class="table-count" id="paymentsCount">(0)</span>
+                            </div>
+                            <div class="table-actions">
+                                <button class="btn btn-secondary btn-sm" onclick="refreshPayments()">
+                                    <i class="fas fa-sync-alt"></i>
+                                    Yenile
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="table-container">
+                            <table class="payments-table">
+                                <thead>
+                                    <tr>
+                                        <th>Öğrenci</th>
+                                        <th>Dönem</th>
+                                        <th>Ödeme Tutarı</th>
+                                        <th>Ödeme Tarihi</th>
+                                        <th>Ödeme Yöntemi</th>
+                                        <th>Ödeme Türü</th>
+                                        <th>Notlar</th>
+                                        <th>İşlemler</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- JavaScript ile doldurulacak -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-content" id="notifications-content" style="display: none;">
+
+                    <!-- Page Header -->
+                    <div class="page-header">
+                        <div class="page-header-info">
+                            <h2>Bildirimler</h2>
+                            <p>Sistem bildirimlerini yönetin ve takip edin</p>
+                        </div>
+                        <div class="header-actions">
+                            <button class="btn btn-secondary" onclick="runManualNotificationCheck()">
+                                <i class="fas fa-sync"></i>
+                                Manuel Kontrol
+                            </button>
+                            <button class="btn btn-primary" onclick="markAllNotificationsRead()">
+                                <i class="fas fa-check-double"></i>
+                                Tümünü Okundu İşaretle
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- İstatistik Kartları -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-card-content">
+                                <div class="stat-info">
+                                    <h3>Toplam Bildirim</h3>
+                                    <div class="stat-value" id="totalNotifications">0</div>
+                                    <div class="stat-trend neutral">
+                                        <i class="fas fa-bell"></i>
+                                        Sistem geneli
+                                    </div>
+                                </div>
+                                <div class="stat-icon total-notifications">
+                                    <i class="fas fa-bell"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-card-content">
+                                <div class="stat-info">
+                                    <h3>Okunmamış</h3>
+                                    <div class="stat-value" id="unreadNotifications">0</div>
+                                    <div class="stat-trend negative">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        Dikkat gerekli
+                                    </div>
+                                </div>
+                                <div class="stat-icon unread-notifications">
+                                    <i class="fas fa-bell-slash"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-card-content">
+                                <div class="stat-info">
+                                    <h3>Acil Durumlar</h3>
+                                    <div class="stat-value" id="urgentNotifications">0</div>
+                                    <div class="stat-trend negative">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        Hemen işlem yapın
+                                    </div>
+                                </div>
+                                <div class="stat-icon urgent-notifications">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-card-content">
+                                <div class="stat-info">
+                                    <h3>Bugün</h3>
+                                    <div class="stat-value" id="todayNotifications">0</div>
+                                    <div class="stat-trend positive">
+                                        <i class="fas fa-calendar-day"></i>
+                                        Yeni bildirimler
+                                    </div>
+                                </div>
+                                <div class="stat-icon today-notifications">
+                                    <i class="fas fa-calendar-check"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filtreler ve Arama -->
+                    <div class="filters-section">
+                        <!-- Tür Filtreleri -->
+                        <div class="filter-group">
+                            <label class="filter-label">Tür:</label>
+                            <div class="filter-tabs">
+                                <button class="filter-tab active" data-filter="all" data-type="type">Tümü</button>
+                                <button class="filter-tab" data-filter="egitim" data-type="type">
+                                    <i class="fas fa-graduation-cap"></i> Eğitim
+                                </button>
+                                <button class="filter-tab" data-filter="odeme" data-type="type">
+                                    <i class="fas fa-credit-card"></i> Ödeme
+                                </button>
+                                <button class="filter-tab" data-filter="belge" data-type="type">
+                                    <i class="fas fa-file-alt"></i> Belge
+                                </button>
+                                <button class="filter-tab" data-filter="kimlik_suresi" data-type="type">
+                                    <i class="fas fa-id-card"></i> Kimlik Süresi
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Durum Filtreleri -->
+                        <div class="filter-group">
+                            <label class="filter-label">Durum:</label>
+                            <div class="filter-tabs">
+                                <button class="filter-tab active" data-filter="all" data-type="status">Tümü</button>
+                                <button class="filter-tab" data-filter="okunmamis" data-type="status">
+                                    <i class="fas fa-eye-slash"></i> Okunmamış
+                                </button>
+                                <button class="filter-tab" data-filter="okunmus" data-type="status">
+                                    <i class="fas fa-eye"></i> Okunmuş
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Öncelik Filtreleri -->
+                        <div class="filter-group">
+                            <label class="filter-label">Öncelik:</label>
+                            <div class="filter-tabs">
+                                <button class="filter-tab active" data-filter="all" data-type="priority">Tümü</button>
+                                <button class="filter-tab" data-filter="acil" data-type="priority">
+                                    <i class="fas fa-exclamation-triangle"></i> Acil
+                                </button>
+                                <button class="filter-tab" data-filter="onemli" data-type="priority">
+                                    <i class="fas fa-exclamation-circle"></i> Önemli
+                                </button>
+                                <button class="filter-tab" data-filter="bilgi" data-type="priority">
+                                    <i class="fas fa-info-circle"></i> Bilgi
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Arama ve Toplu İşlemler -->
+                        <div class="filter-group" style="margin-left: auto;">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Bildirim ara..." id="notificationSearch">
+                            </div>
+                            <button class="btn btn-danger" onclick="deleteSelectedNotifications()"
+                                style="margin-left: 10px;">
+                                <i class="fas fa-trash"></i>
+                                Seçilenleri Sil
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Bildirimler Listesi -->
+                    <div class="notifications-container">
+                        <!-- Loading State -->
+                        <div id="notifications-loading"
+                            style="text-align: center; padding: 40px; color: #6b7280; display: block;">
+                            <i class="fas fa-spinner fa-spin" style="font-size: 24px; margin-bottom: 12px;"></i>
+                            <div>Bildirimler yükleniyor...</div>
+                        </div>
+
+                        <!-- Empty State -->
+                        <div id="notifications-empty"
+                            style="text-align: center; padding: 60px; color: #6b7280; display: none;">
+                            <i class="fas fa-bell-slash"
+                                style="font-size: 48px; margin-bottom: 16px; color: #d1d5db;"></i>
+                            <h3 style="margin-bottom: 8px;">Bildirim bulunamadı</h3>
+                            <p>Henüz hiç bildirim oluşturulmamış veya filtrelerinizle eşleşen bildirim yok.</p>
+                            <button class="btn btn-primary" onclick="runManualNotificationCheck()"
+                                style="margin-top: 16px;">
+                                <i class="fas fa-sync"></i>
+                                Manuel Kontrol Yap
+                            </button>
+                        </div>
+
+                        <!-- Bildirimler Tablosu -->
+                        <div id="notifications-table" style="display: none;">
+                            <div class="table-header"
+                                style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+                                <div>
+                                    <input type="checkbox" id="selectAllNotifications"
+                                        onchange="selectAllNotifications()">
+                                    <label for="selectAllNotifications"
+                                        style="margin-left: 8px; font-weight: 500;">Tümünü Seç</label>
+                                </div>
+                                <div class="table-info">
+                                    <span id="notificationCount">0 bildirim</span>
+                                </div>
+                            </div>
+
+                            <div class="notifications-list" id="notificationsList">
+                                <!-- Bildirimler buraya JavaScript ile eklenecek -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination-container" id="notificationsPagination" style="display: none;">
+                        <div class="pagination">
+                            <button class="pagination-btn" id="prevPageBtn" onclick="changePage(-1)">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="pagination-info">
+                                <span id="currentPageInfo">Sayfa 1 / 1</span>
+                            </div>
+                            <button class="pagination-btn" id="nextPageBtn" onclick="changePage(1)">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bildirim Detay Modal - BODY'İN SONUNA (diğer modal'ların yanına) EKLENİR -->
+                <div id="notificationDetailModal" class="modal-overlay" style="display: none;">
+                    <div class="modal-container" style="max-width: 800px;">
+                        <div class="modal-header">
+                            <h2>
+                                <i class="fas fa-bell"></i>
+                                Bildirim Detayları
+                            </h2>
+                            <button onclick="closeNotificationDetailModal()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body" id="notificationDetailContent">
+                            <!-- Detay içeriği buraya gelecek -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" onclick="closeNotificationDetailModal()">
+                                <i class="fas fa-times"></i>
+                                Kapat
+                            </button>
+                            <button type="button" class="btn btn-primary" id="markAsReadBtn"
+                                onclick="markNotificationAsRead()">
+                                <i class="fas fa-check"></i>
+                                Okundu İşaretle
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+        </main>
+    </div>
+
+    <!-- Add Term Modal -->
+    <div class="modal-overlay" id="addTermModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2>
+                    <i class="fas fa-plus-circle"></i>
+                    Yeni Dönem Ekle
+                </h2>
+                <button class="modal-close" onclick="closeAddTermModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <!-- Form Progress Indicator -->
+                <div class="form-progress">
+                    <div class="form-progress-bar" id="formProgressBar"></div>
+                </div>
+
+                <form id="addTermForm" class="term-form">
+                    <!-- Dönem Numarası -->
+                    <div class="form-group">
+                        <label for="termNumber" class="form-label">
+                            <i class="fas fa-hashtag"></i>
+                            Dönem Numarası
+                        </label>
+                        <input type="number" id="termNumber" name="donem_numara" class="form-input"
+                            placeholder="Örn: 2024001" required min="1">
+                        <small class="form-help">Benzersiz bir dönem numarası girin</small>
+                    </div>
+
+                    <!-- Dönem Türü -->
+                    <div class="form-group">
+                        <label for="termType" class="form-label">
+                            <i class="fas fa-tag"></i>
+                            Dönem Türü
+                        </label>
+                        <select id="termType" name="donem_turu" class="form-select" required>
+                            <option value="">Seçiniz...</option>
+                            <option value="Temel">📚 Temel Eğitim</option>
+                            <option value="Yenileme">🔄 Yenileme Eğitimi</option>
+                        </select>
+                    </div>
+
+                    <!-- Öğrenci Sayısı - Sadece düzenleme modunda görünür -->
+                    <div class="form-group" style="display: none;">
+                        <label for="studentCount" class="form-label">
+                            <i class="fas fa-users"></i>
+                            Kayıtlı Öğrenci Sayısı
+                        </label>
+                        <input type="number" id="studentCount" name="donem_ogr_adedi" class="form-input" placeholder="0"
+                            min="0" max="500" disabled>
+                        <small class="form-help">Bu alan sadece görüntüleme içindir</small>
+                    </div>
+
+                    <!-- Tarih Aralığı -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="startDate" class="form-label">
+                                <i class="fas fa-calendar-plus"></i>
+                                Başlangıç Tarihi
+                            </label>
+                            <input type="text" id="startDate" name="donem_baslangic_t" class="form-input date-picker"
+                                placeholder="Gün/Ay/Yıl seçin" readonly required>
+                            <small class="form-help">Dönem başlangıç tarihini seçin</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="endDate" class="form-label">
+                                <i class="fas fa-calendar-check"></i>
+                                Bitiş Tarihi
+                            </label>
+                            <input type="text" id="endDate" name="donem_bitis_t" class="form-input date-picker"
+                                placeholder="Gün/Ay/Yıl seçin" readonly required>
+                            <small class="form-help">Dönem bitiş tarihini seçin</small>
+                        </div>
+                    </div>
+
+                    <!-- Quick Stats - Sadece düzenleme modunda -->
+                    <div class="modal-quick-stats" id="modalQuickStats" style="display: none;">
+                        <div class="quick-stat">
+                            <span class="quick-stat-value" id="termDurationStat">0</span>
+                            <span class="quick-stat-label">Gün</span>
+                        </div>
+                        <div class="quick-stat">
+                            <span class="quick-stat-value" id="studentsPerDayStat">0</span>
+                            <span class="quick-stat-label">Öğr/Gün</span>
+                        </div>
+                        <div class="quick-stat">
+                            <span class="quick-stat-value" id="completionRateStat">0%</span>
+                            <span class="quick-stat-label">Tamamlanma</span>
+                        </div>
+                    </div>
+
+                    <!-- Form Validation Info -->
+                    <div class="form-info">
+                        <div class="info-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Dönem durumu tarihlere göre otomatik hesaplanacak</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-users"></i>
+                            <span>Öğrenci sayısı dönem içine kayıt yapıldıkça artacak</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Dönem numarası benzersiz olmalıdır</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeAddTermModal()">
+                    <i class="fas fa-times"></i>
+                    İptal
+                </button>
+                <button type="submit" form="addTermForm" class="btn btn-primary" id="saveTermBtn">
+                    <i class="fas fa-save"></i>
+                    Dönem Ekle
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/l10n/tr.min.js"></script>
+    <script src="./public/js/notifications-page.js"></script>
+    <script>
+        // Form progress güncelleme
+        function updateFormProgress() {
+            const form = document.getElementById('addTermForm');
+            const progressBar = document.getElementById('formProgressBar');
+
+            if (!form || !progressBar) return;
+
+            const requiredFields = form.querySelectorAll('[required]');
+            let filledFields = 0;
+
+            requiredFields.forEach(field => {
+                if (field.value.trim() !== '') {
+                    filledFields++;
+                }
+            });
+
+            const progress = (filledFields / requiredFields.length) * 100;
+            progressBar.style.width = progress + '%';
+        }
+
+        // Form input'larına event listener ekle
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('addTermForm');
+            if (form) {
+                const inputs = form.querySelectorAll('input, select');
+                inputs.forEach(input => {
+                    input.addEventListener('input', updateFormProgress);
+                    input.addEventListener('change', updateFormProgress);
+                });
+            }
+            // Dönem ekleme/düzenleme için tarih picker'ları başlat
+            setTimeout(() => {
+                initializeFlatpickr();
+            }, 100);
+        });
+    </script>
+    <script>
+        // Flatpickr Türkçe Konfigürasyonu
+        const flatpickrConfig = {
+            locale: "tr",
+            dateFormat: "d.m.Y",
+            allowInput: false,
+            clickOpens: true,
+            time_24hr: true,
+            disableMobile: false, // Mobilde de custom picker kullan
+            monthSelectorType: "dropdown",
+            yearSelectorType: "dropdown",
+            showMonths: 1,
+            animate: true,
+            theme: "material_green",
+            onReady: function (selectedDates, dateStr, instance) {
+                // Türkçe placeholder text
+                instance.input.placeholder = "Gün/Ay/Yıl";
+            }
+        };
+
+        // Flatpickr başlatma fonksiyonu
+        function initializeFlatpickr() {
+            // Başlangıç tarihi
+            const startDatePicker = flatpickr("#startDate", {
+                locale: "tr",
+                dateFormat: "d.m.Y",
+                allowInput: false,
+                clickOpens: true,
+                time_24hr: true,
+                disableMobile: false,
+                monthSelectorType: "dropdown",
+                yearSelectorType: "dropdown",
+                showMonths: 1,
+                animate: true,
+                theme: "material_green",
+                minDate: "today",
+                onChange: function (selectedDates, dateStr, instance) {
+                    if (endDatePicker) {
+                        endDatePicker.set('minDate', dateStr);
+                        if (endDatePicker.selectedDates.length > 0 &&
+                            endDatePicker.selectedDates[0] <= selectedDates[0]) {
+                            endDatePicker.clear();
+                        }
+                    }
+                    showStatusPreview();
+                    updateFormProgress();
+                }
+            });
+
+            // Bitiş tarihi
+            const endDatePicker = flatpickr("#endDate", {
+                locale: "tr",
+                dateFormat: "d.m.Y",
+                allowInput: false,
+                clickOpens: true,
+                time_24hr: true,
+                disableMobile: false,
+                monthSelectorType: "dropdown",
+                yearSelectorType: "dropdown",
+                showMonths: 1,
+                animate: true,
+                theme: "material_green",
+                minDate: "today",
+                onChange: function (selectedDates, dateStr, instance) {
+                    const startDate = startDatePicker.selectedDates[0];
+                    if (startDate && selectedDates[0] <= startDate) {
+                        instance.clear();
+                        showNotification('Bitiş tarihi başlangıç tarihinden sonra olmalıdır', 'warning');
+                        return;
+                    }
+                    showStatusPreview();
+                    updateFormProgress();
+                }
+            });
+
+            return { startDatePicker, endDatePicker };
+        }
+
+        // Sayfa yüklendiğinde Flatpickr'ı başlat
+        document.addEventListener('DOMContentLoaded', function () {
+            // Diğer DOMContentLoaded kodlarından sonra
+            setTimeout(() => {
+                initializeFlatpickr();
+            }, 100);
+        });
+    </script>
+    <script src="./public/js/student-utils.js"></script> <!-- YENİ -->
+    <script src="./public/js/default.js"></script>
+    <script src="./public/js/student-edit.js"></script>
+
+    <!-- Veya inline olarak eklemek isterseniz: -->
+    <script>
+        // Öğrenci düzenleme işlevleri aktif olduğunda çalışacak
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mevcut editStudentDetails fonksiyonunu güncelle
+            if (typeof window.editStudentDetails === 'undefined') {
+                window.editStudentDetails = async function (studentId) {
+                    try {
+                        const student = await window.db.getOgrenciById(studentId);
+
+                        if (!student) {
+                            showNotification('Öğrenci bulunamadı', 'error');
+                            return;
+                        }
+
+                        // Basit düzenleme modalı aç
+                        openSimpleEditModal(student);
+
+                    } catch (error) {
+                        console.error('Öğrenci bilgileri yüklenirken hata:', error);
+                        showNotification('Öğrenci bilgileri yüklenirken hata oluştu', 'error');
+                    }
+                };
+            }
+
+            console.log('✅ Öğrenci düzenleme işlevleri aktif edildi!');
+        });
+
+        function openSimpleEditModal(student) {
+            // Basit bir düzenleme modalı oluştur
+            const modalHTML = `
+        <div class="modal-overlay active" id="simpleEditModal">
+            <div class="modal-container">
+                <div class="modal-header">
+                    <h2>
+                        <i class="fas fa-user-edit"></i>
+                        ${student.ogr_ad} ${student.ogr_soyad} - Düzenle
+                    </h2>
+                    <button class="modal-close" onclick="closeSimpleEditModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p style="text-align: center; padding: 40px; color: #6b7280;">
+                        <i class="fas fa-tools" style="font-size: 48px; margin-bottom: 16px; color: #16a34a;"></i><br>
+                        <strong>Öğrenci Düzenleme</strong><br>
+                        Gelişmiş düzenleme özellikleri yakında aktif olacak!<br><br>
+                        <small>Şu anda: ${student.ogr_ad} ${student.ogr_soyad} (ID: ${student.id})</small>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeSimpleEditModal()">
+                        <i class="fas fa-times"></i>
+                        Kapat
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="viewStudentDetails(${student.id}); closeSimpleEditModal();">
+                        <i class="fas fa-eye"></i>
+                        Detayları Görüntüle
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSimpleEditModal() {
+            const modal = document.getElementById('simpleEditModal');
+            if (modal) {
+                modal.remove();
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Global fonksiyonları tanımla
+        window.openSimpleEditModal = openSimpleEditModal;
+        window.closeSimpleEditModal = closeSimpleEditModal;
+    </script>
+
+    <!-- Ana Sistem Güncellemesi Script'i -->
+    <script>
+        // Öğrenci düzenleme sistemini tamamen aktif et
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // Düzenleme butonlarını aktif et
+            function activateEditButtons() {
+                const editButtons = document.querySelectorAll('.action-btn.edit');
+                editButtons.forEach(btn => {
+                    if (!btn.onclick) {
+                        const studentId = btn.closest('tr')?.dataset.studentId;
+                        if (studentId) {
+                            btn.onclick = () => editStudentDetails(parseInt(studentId));
+                        }
+                    }
+                });
+            }
+
+            // MutationObserver ile dinamik eklenen butonları yakala
+            const observer = new MutationObserver(function (mutations) {
+                mutations.forEach(function (mutation) {
+                    if (mutation.addedNodes) {
+                        mutation.addedNodes.forEach(function (node) {
+                            if (node.nodeType === 1) { // Element node
+                                const editButtons = node.querySelectorAll ? node.querySelectorAll('.action-btn.edit') : [];
+                                editButtons.forEach(btn => {
+                                    const studentId = btn.closest('tr')?.dataset.studentId;
+                                    if (studentId && !btn.onclick) {
+                                        btn.onclick = () => editStudentDetails(parseInt(studentId));
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+
+            // Öğrenci tablosunu gözle
+            const studentsTable = document.getElementById('students-tbody');
+            if (studentsTable) {
+                observer.observe(studentsTable, { childList: true, subtree: true });
+            }
+
+            // Sayfa yüklendiğinde mevcut butonları aktif et
+            setTimeout(activateEditButtons, 1000);
+
+            console.log('🔧 Düzenleme butonları otomatik olarak aktif ediliyor...');
+        });
+
+        // Öğrenci durumu güncelleme fonksiyonu
+        async function quickUpdateStudentStatus(studentId, newStatus) {
+            try {
+                const result = await window.db.runQuery(
+                    'UPDATE ogrenciler SET ogr_durum = ? WHERE id = ?',
+                    [newStatus, studentId]
+                );
+
+                if (result && !result.error) {
+                    showNotification(`Öğrenci durumu "${newStatus}" olarak güncellendi`, 'success');
+
+                    // Listeyi yenile
+                    if (window.appState?.currentTermId) {
+                        window.loadTermStudents(window.appState.currentTermId);
+                    }
+                } else {
+                    throw new Error(result?.error || 'Güncelleme başarısız');
+                }
+
+            } catch (error) {
+                console.error('Durum güncelleme hatası:', error);
+                showNotification('Durum güncellenirken hata oluştu', 'error');
+            }
+        }
+
+        // Hızlı işlemler için context menu
+        function showStudentContextMenu(event, studentId) {
+            event.preventDefault();
+
+            const contextMenu = document.createElement('div');
+            contextMenu.className = 'context-menu';
+            contextMenu.style.cssText = `
+        position: fixed;
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 10000;
+        min-width: 180px;
+        top: ${event.clientY}px;
+        left: ${event.clientX}px;
+    `;
+
+            contextMenu.innerHTML = `
+        <div class="context-menu-item" onclick="viewStudentDetails(${studentId}); removeContextMenu()">
+            <i class="fas fa-eye"></i> Görüntüle
+        </div>
+        <div class="context-menu-item" onclick="editStudentDetails(${studentId}); removeContextMenu()">
+            <i class="fas fa-edit"></i> Düzenle
+        </div>
+        <div class="context-menu-item" onclick="duplicateStudent(${studentId}); removeContextMenu()">
+            <i class="fas fa-copy"></i> Kopyala
+        </div>
+        <hr style="margin: 4px 0; border: none; border-top: 1px solid #e5e7eb;">
+        <div class="context-menu-item" onclick="quickUpdateStudentStatus(${studentId}, 'Aktif'); removeContextMenu()">
+            <i class="fas fa-check-circle"></i> Aktif Yap
+        </div>
+        <div class="context-menu-item" onclick="quickUpdateStudentStatus(${studentId}, 'Pasif'); removeContextMenu()">
+            <i class="fas fa-pause-circle"></i> Pasif Yap
+        </div>
+        <div class="context-menu-item" onclick="quickUpdateStudentStatus(${studentId}, 'Mezun'); removeContextMenu()">
+            <i class="fas fa-graduation-cap"></i> Mezun Yap
+        </div>
+        <hr style="margin: 4px 0; border: none; border-top: 1px solid #e5e7eb;">
+        <div class="context-menu-item danger" onclick="deleteStudentConfirm(${studentId}); removeContextMenu()">
+            <i class="fas fa-trash"></i> Sil
+        </div>
+    `;
+
+            // CSS ekle
+            if (!document.getElementById('contextMenuStyles')) {
+                const style = document.createElement('style');
+                style.id = 'contextMenuStyles';
+                style.textContent = `
+            .context-menu-item {
+                padding: 8px 12px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 14px;
+                color: #374151;
+                transition: background-color 0.2s;
+            }
+            .context-menu-item:hover {
+                background-color: #f3f4f6;
+            }
+            .context-menu-item.danger {
+                color: #dc2626;
+            }
+            .context-menu-item.danger:hover {
+                background-color: #fef2f2;
+            }
+        `;
+                document.head.appendChild(style);
+            }
+
+            document.body.appendChild(contextMenu);
+
+            // Dışarı tıklanınca kapat
+            setTimeout(() => {
+                document.addEventListener('click', removeContextMenu, { once: true });
+            }, 100);
+        }
+
+        function removeContextMenu() {
+            const contextMenu = document.querySelector('.context-menu');
+            if (contextMenu) {
+                contextMenu.remove();
+            }
+        }
+
+        // Öğrenci satırlarına sağ tık ekle
+        function addContextMenuToStudentRows() {
+            const studentRows = document.querySelectorAll('#students-tbody tr[data-student-id]');
+            studentRows.forEach(row => {
+                const studentId = parseInt(row.dataset.studentId);
+                if (!row.oncontextmenu) {
+                    row.oncontextmenu = (e) => showStudentContextMenu(e, studentId);
+                }
+            });
+        }
+
+        function showStatusPreview() {
+            const startDateInput = document.getElementById('startDate');
+            const endDateInput = document.getElementById('endDate');
+            const formInfo = document.querySelector('.form-info');
+
+            if (!startDateInput || !endDateInput || !formInfo) return;
+
+            const startDateValue = startDateInput.value;
+            const endDateValue = endDateInput.value;
+
+            if (startDateValue && endDateValue) {
+                const startDate = formatDateForDatabase(startDateValue);
+                const endDate = formatDateForDatabase(endDateValue);
+
+                const predictedStatus = calculateTermStatus(startDate, endDate);
+
+                let previewElement = formInfo.querySelector('.auto-status-indicator');
+                if (!previewElement) {
+                    previewElement = document.createElement('div');
+                    previewElement.className = 'auto-status-indicator';
+                    previewElement.style.cssText = `
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                padding: 8px 12px;
+                background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+                border: 1px solid #bbf7d0;
+                border-radius: 8px;
+                font-size: 13px;
+                color: #166534;
+                margin-top: 8px;
+            `;
+                    formInfo.appendChild(previewElement);
+                }
+
+                previewElement.innerHTML = `
+            <i class="fas fa-magic"></i>
+            <span>Hesaplanan durum: <strong style="color: ${getStatusColor(predictedStatus)}">${predictedStatus}</strong></span>
+        `;
+            }
+        }
+
+        function calculateTermStatus(startDate, endDate) {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            const start = new Date(startDate);
+            start.setHours(0, 0, 0, 0);
+
+            const end = new Date(endDate);
+            end.setHours(0, 0, 0, 0);
+
+            if (today < start) {
+                return 'Yaklaşan';
+            } else if (today >= start && today <= end) {
+                return 'Aktif';
+            } else if (today > end) {
+                return 'Tamamlandı';
+            }
+
+            return 'Yaklaşan';
+        }
+
+        function getStatusColor(status) {
+            const colors = {
+                'Aktif': '#16a34a',
+                'Yaklaşan': '#2563eb',
+                'Tamamlandı': '#6b7280',
+                'İptal': '#dc2626'
+            };
+            return colors[status] || '#6b7280';
+        }
+
+        // Sayfa güncellendiğinde context menu'ları ekle
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(addContextMenuToStudentRows, 2000);
+
+            // MutationObserver ile yeni eklenen satırları yakala
+            const observer = new MutationObserver(function (mutations) {
+                mutations.forEach(function (mutation) {
+                    if (mutation.addedNodes) {
+                        setTimeout(addContextMenuToStudentRows, 100);
+                    }
+                });
+            });
+
+            const studentsTable = document.getElementById('students-tbody');
+            if (studentsTable) {
+                observer.observe(studentsTable, { childList: true });
+            }
+        });
+
+        // Global fonksiyonları tanımla
+        window.quickUpdateStudentStatus = quickUpdateStudentStatus;
+        window.showStudentContextMenu = showStudentContextMenu;
+        window.removeContextMenu = removeContextMenu;
+        window.addContextMenuToStudentRows = addContextMenuToStudentRows;
+
+        console.log('🎯 Gelişmiş öğrenci yönetim özellikleri aktif!');
+    </script>
+
+    <!-- Klavye Kısayolları -->
+    <script>
+        // Klavye kısayolları
+        document.addEventListener('keydown', function (e) {
+            // Ctrl+E: Seçili öğrenciyi düzenle
+            if (e.ctrlKey && e.key === 'e' && !e.target.matches('input, textarea, select')) {
+                e.preventDefault();
+                const selectedCheckbox = document.querySelector('.student-checkbox:checked');
+                if (selectedCheckbox) {
+                    editStudentDetails(parseInt(selectedCheckbox.value));
+                }
+            }
+
+            // Ctrl+D: Seçili öğrenciyi kopyala
+            if (e.ctrlKey && e.key === 'd' && !e.target.matches('input, textarea, select')) {
+                e.preventDefault();
+                const selectedCheckbox = document.querySelector('.student-checkbox:checked');
+                if (selectedCheckbox) {
+                    duplicateStudent(parseInt(selectedCheckbox.value));
+                }
+            }
+
+            // Delete: Seçili öğrencileri sil
+            if (e.key === 'Delete' && !e.target.matches('input, textarea, select')) {
+                const selectedCheckboxes = document.querySelectorAll('.student-checkbox:checked');
+                if (selectedCheckboxes.length > 0) {
+                    const studentIds = Array.from(selectedCheckboxes).map(cb => parseInt(cb.value));
+                    if (confirm(`${studentIds.length} öğrenciyi silmek istediğinizden emin misiniz?`)) {
+                        Promise.all(studentIds.map(id => window.db.deleteOgrenci(id)))
+                            .then(() => {
+                                showNotification(`${studentIds.length} öğrenci silindi`, 'success');
+                                window.loadTermStudents(window.appState.currentTermId);
+                            })
+                            .catch(() => {
+                                showNotification('Silme işlemi sırasında hata oluştu', 'error');
+                            });
+                    }
+                }
+            }
+        });
+
+        // Yardım modalı
+        function showKeyboardShortcuts() {
+            const helpModal = `
+        <div class="modal-overlay active" id="keyboardHelpModal">
+            <div class="modal-container" style="max-width: 500px;">
+                <div class="modal-header">
+                    <h2>
+                        <i class="fas fa-keyboard"></i>
+                        Klavye Kısayolları
+                    </h2>
+                    <button class="modal-close" onclick="closeKeyboardHelp()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div style="display: grid; gap: 12px;">
+                        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e5e7eb;">
+                            <span><strong>Ctrl + E</strong></span>
+                            <span>Seçili öğrenciyi düzenle</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e5e7eb;">
+                            <span><strong>Ctrl + D</strong></span>
+                            <span>Seçili öğrenciyi kopyala</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e5e7eb;">
+                            <span><strong>Delete</strong></span>
+                            <span>Seçili öğrencileri sil</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e5e7eb;">
+                            <span><strong>ESC</strong></span>
+                            <span>Modalları kapat</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e5e7eb;">
+                            <span><strong>Sağ Tık</strong></span>
+                            <span>Öğrenci context menüsü</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                            <span><strong>F1</strong></span>
+                            <span>Bu yardım menüsü</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="closeKeyboardHelp()">
+                        <i class="fas fa-check"></i>
+                        Anladım
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+            document.body.insertAdjacentHTML('beforeend', helpModal);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeKeyboardHelp() {
+            const modal = document.getElementById('keyboardHelpModal');
+            if (modal) {
+                modal.remove();
+                document.body.style.overflow = '';
+            }
+        }
+
+        // F1 tuşu ile yardım
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'F1') {
+                e.preventDefault();
+                showKeyboardShortcuts();
+            }
+        });
+
+        window.showKeyboardShortcuts = showKeyboardShortcuts;
+        window.closeKeyboardHelp = closeKeyboardHelp;
+
+        console.log('⌨️ Klavye kısayolları aktif! F1 tuşuna basarak yardım alabilirsiniz.');
+    </script>
+
+</body>
+
+</html>

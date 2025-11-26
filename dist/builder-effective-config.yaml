@@ -1,0 +1,24 @@
+directories:
+  output: dist
+  buildResources: build
+appId: com.pergamon.app
+productName: Pergamon
+files:
+  - filter:
+      - '**/*'
+      - '!node_modules/**/*'
+      - node_modules/**/*
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  forceCodeSigning: false
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  installerIcon: assets/icon.ico
+  uninstallerIcon: assets/icon.ico
+electronVersion: 37.5.1
