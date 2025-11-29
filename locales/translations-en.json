@@ -1,0 +1,187 @@
+{
+  "app": {
+    "title": "Pergamon Security School",
+    "subtitle": "Management System",
+    "logoAbbr": "SS"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "students": "Students",
+    "terms": "Terms",
+    "payments": "Payments",
+    "notifications": "Notifications",
+    "settings": "Settings"
+  },
+  "pages": {
+    "dashboard": {
+      "title": "Dashboard",
+      "description": "View overall system status"
+    },
+    "students": {
+      "title": "Students",
+      "description": "Manage student information"
+    },
+    "terms": {
+      "title": "Terms",
+      "description": "Manage training terms",
+      "addTerm": "Add New Term",
+      "termCode": "Term Code",
+      "termName": "Term Name",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "capacity": "Capacity",
+      "enrolled": "Enrolled",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "termDetail": {
+      "title": "Term Details",
+      "description": "Manage term students",
+      "backToTerms": "Back to Terms",
+      "addStudent": "Add Student",
+      "studentCount": "students",
+      "overview": "Overview",
+      "students": "Students",
+      "documents": "Documents",
+      "payments": "Payments"
+    },
+    "payments": {
+      "title": "Payments",
+      "description": "Track payment transactions",
+      "totalAmount": "Total Amount",
+      "paidAmount": "Paid",
+      "pendingAmount": "Pending",
+      "addPayment": "Add Payment"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "description": "Manage your notifications",
+      "markAllRead": "Mark All as Read",
+      "deleteAll": "Delete All"
+    },
+    "settings": {
+      "title": "Settings",
+      "description": "Configure system settings"
+    }
+  },
+  "common": {
+    "search": "Search...",
+    "filter": "Filter",
+    "sort": "Sort",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "close": "Close",
+    "add": "Add",
+    "update": "Update",
+    "submit": "Submit",
+    "clear": "Clear",
+    "all": "All",
+    "active": "Active",
+    "inactive": "Inactive",
+    "pending": "Pending",
+    "completed": "Completed",
+    "yes": "Yes",
+    "no": "No",
+    "loading": "Loading...",
+    "noData": "No data found",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Info"
+  },
+  "student": {
+    "tcNo": "TC ID Number",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phone": "Phone",
+    "email": "Email",
+    "birthDate": "Birth Date",
+    "address": "Address",
+    "enrollmentDate": "Enrollment Date",
+    "status": "Status",
+    "trainingType": "Training Type",
+    "weaponType": "Weapon Type",
+    "documents": "Documents",
+    "missingDocuments": "Missing Documents",
+    "allDocumentsComplete": "All Documents Complete"
+  },
+  "trainingTypes": {
+    "ilkDefa": "First Time",
+    "yenileme": "Renewal"
+  },
+  "weaponTypes": {
+    "tabanca": "Pistol",
+    "tufek": "Rifle",
+    "her_ikisi": "Both"
+  },
+  "documentTypes": {
+    "kimlik": "ID Copy",
+    "ikametgah": "Residence Document",
+    "sabika": "Criminal Record",
+    "saglik": "Health Report",
+    "foto": "ID Photo",
+    "diploma": "Diploma/Student Certificate",
+    "askerlik": "Military Document"
+  },
+  "statusTypes": {
+    "active": "Active",
+    "completed": "Completed",
+    "dropped": "Dropped",
+    "pending": "Pending"
+  },
+  "payment": {
+    "amount": "Amount",
+    "paidAmount": "Paid Amount",
+    "remainingAmount": "Remaining Amount",
+    "paymentDate": "Payment Date",
+    "paymentMethod": "Payment Method",
+    "description": "Description",
+    "receipt": "Receipt No",
+    "installment": "Installment",
+    "cash": "Cash",
+    "creditCard": "Credit Card",
+    "bankTransfer": "Bank Transfer"
+  },
+  "filters": {
+    "all": "All",
+    "active": "Active",
+    "completed": "Completed",
+    "upcoming": "Upcoming",
+    "past": "Past",
+    "pending": "Pending",
+    "paid": "Paid",
+    "partiallyPaid": "Partially Paid",
+    "unpaid": "Unpaid",
+    "allDocuments": "All Documents",
+    "complete": "Complete",
+    "incomplete": "Incomplete"
+  },
+  "sort": {
+    "dateNewest": "Date (Newest → Oldest)",
+    "dateOldest": "Date (Oldest → Newest)",
+    "nameAZ": "Name (A → Z)",
+    "nameZA": "Name (Z → A)",
+    "amountHighLow": "Amount (High → Low)",
+    "amountLowHigh": "Amount (Low → High)"
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalidTC": "Invalid TC ID Number",
+    "invalidEmail": "Invalid email address",
+    "invalidPhone": "Invalid phone number",
+    "invalidDate": "Invalid date",
+    "minLength": "Must be at least {0} characters",
+    "maxLength": "Must be at most {0} characters"
+  },
+  "messages": {
+    "deleteConfirm": "Are you sure you want to delete?",
+    "saveSuccess": "Save successful",
+    "updateSuccess": "Update successful",
+    "deleteSuccess": "Delete successful",
+    "error": "An error occurred",
+    "noChanges": "No changes made"
+  }
+}
