@@ -1,4 +1,4 @@
-# Student Management System
+# Security Student Management System
 
 A comprehensive student management system designed for security and firearms training institutions in Turkey. The system manages student enrollment, training programs, document tracking, payment processing, and compliance with Turkish regulations.
 
