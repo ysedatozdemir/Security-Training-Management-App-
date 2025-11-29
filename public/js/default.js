@@ -75,6 +75,17 @@ const pageConfig = {
     }
 };
 
+document.addEventListener('DOMContentLoaded', async () => {
+    await i18n.loadTranslations();
+    
+    const langContainer = document.getElementById('languageSelectorContainer');
+    if (langContainer) {
+        langContainer.appendChild(i18n.createLanguageSelector());
+    }
+    
+    i18n.updatePageContent();
+});
+
 // =============================================================================
 // BASIT VE ETKİLİ SAYFA YÖNETİMİ
 // =============================================================================

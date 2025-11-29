@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/themes/material_green.min.css">
 
+    <link rel="stylesheet" href="./public/css/language-selector.css">
+
     <style>
         .filter-tab {
             transition: all 0.2s ease-in-out !important;
@@ -33,9 +35,12 @@
             font-weight: 600 !important;
         }
     </style>
+
+    <script src="./public/js/i18n.js"></script>
+
 </head>
 
-<body>
+<body data-lang="tr">
     <div class="app-container">
         <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
@@ -44,8 +49,8 @@
                 <div class="logo">
                     <div class="logo-icon">GÜ</div>
                     <div class="logo-text">
-                        <h1>Pergamon Güvenlik Okulu</h1>
-                        <p>Yönetim Sistemi</p>
+                        <h1 data-i18n="app.title">Pergamon Güvenlik Okulu</h1>
+                        <p data-i18n="app.subtitle">Yönetim Sistemi</p>
                     </div>
                 </div>
             </div>
@@ -68,19 +73,19 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link" data-page="terms">
                             <i class="fas fa-calendar-alt"></i>
-                            <span class="nav-text">Dönemler</span>
+                            <span class="nav-text" data-i18n="navigation.terms">Dönemler</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link" data-page="payments">
                             <i class="fas fa-credit-card"></i>
-                            <span class="nav-text">Ödemeler</span>
+                            <span class="nav-text" data-i18n="navigation.payments">Ödemeler</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link" data-page="notifications">
                             <i class="fas fa-bell"></i>
-                            <span class="nav-text">Bildirimler</span>
+                            <span class="nav-text" data-i18n="navigation.notifications">Bildirimler</span>
                         </a>
                     </li>
                     <!--li class="nav-item">
@@ -106,9 +111,11 @@
             <header class="header">
                 <div class="header-content">
                     <div class="header-info">
-                        <h1 id="pageTitle">Dashboard</h1>
-                        <p id="pageDescription">Genel sistem durumunu görüntüleyin</p>
+                        <h1 id="pageTitle" data-i18n="page.dashboard.title">Dashboard</h1>
+                        <p id="pageDescription" data-i18n="page.dashboard.description">Genel sistem durumunu görüntüleyin</p>
                     </div>
+
+                    <div id="languageSelectorContainer"></div>
 
                     <div class="header-actions">
                         <!--div class="search-box">
@@ -131,7 +138,7 @@
                     <div class="stats-grid">
                         <div class="stat-card">
                             <div class="stat-info">
-                                <h3>Toplam Öğrenci</h3>
+                                <h3 data-i18n="dashboard.totalStudents">Toplam Öğrenci</h3>
                                 <p class="stat-value">245</p>
                                 <span class="stat-trend positive">
                                     <i class="fas fa-trending-up"></i>
@@ -145,7 +152,7 @@
 
                         <div class="stat-card">
                             <div class="stat-info">
-                                <h3>Aktif Dönemler</h3>
+                                <h3 data-i18n="dashboard.activeTerms">Aktif Dönemler</h3>
                                 <p class="stat-value">8</p>
                             </div>
                             <div class="stat-icon calendar">
@@ -155,7 +162,7 @@
 
                         <div class="stat-card">
                             <div class="stat-info">
-                                <h3>Yeni Öğrenciler</h3>
+                                <h3 data-i18n="dashboard.newStudents">Yeni Öğrenciler</h3>
                                 <p class="stat-value">23</p>
                                 <span class="stat-trend positive">
                                     <i class="fas fa-trending-up"></i>
@@ -169,7 +176,7 @@
 
                         <div class="stat-card">
                             <div class="stat-info">
-                                <h3>Bekleyen Ödemeler</h3>
+                                <h3 data-i18n="dashboard.pendingPayments">Bekleyen Ödemeler</h3>
                                 <p class="stat-value">15,750 ₺</p>
                             </div>
                             <div class="stat-icon payments">
@@ -182,10 +189,10 @@
                     <div class="dashboard-grid">
                         <!-- Chart Area -->
                         <div class="chart-card">
-                            <h3>Aylık Kayıt Trendi</h3>
+                            <h3 data-i18n="dashboard.monthlyRegistrationTrend">Aylık Kayıt Trendi</h3>
                             <div class="chart-placeholder">
                                 <i class="fas fa-chart-line"></i>
-                                <p>Grafik burada görüntülenecek</p>
+                                <p data-i18n="dashboard.chartPlaceholder">Grafik burada görüntülenecek</p>
                             </div>
                         </div>
 
@@ -223,21 +230,21 @@
 
                     <!-- Alerts -->
                     <div class="alerts-section">
-                        <h3>
+                        <h3 data-i18n="dashboard.alertsTitle">
                             <i class="fas fa-exclamation-circle"></i>
                             Dikkat Gereken Durumlar
                         </h3>
                         <div class="alerts-grid">
                             <div class="alert-card danger">
-                                <h4>Geciken Ödemeler</h4>
+                                <h4 data-i18n="dashboard.overduePayments">Geciken Ödemeler</h4>
                                 <p class="alert-value">7 Öğrenci</p>
                             </div>
                             <div class="alert-card warning">
-                                <h4>Dönem Bitiş Uyarısı</h4>
+                                <h4 data-i18n="dashboard.termEndWarning">Dönem Bitiş Uyarısı</h4>
                                 <p class="alert-value">3 Dönem</p>
                             </div>
                             <div class="alert-card info">
-                                <h4>Bekleyen Başvurular</h4>
+                                <h4 data-i18n="dashboard.pendingApplications">Bekleyen Başvurular</h4>
                                 <p class="alert-value">12 Başvuru</p>
                             </div>
                         </div>
@@ -249,12 +256,12 @@
                     <!-- Terms Header -->
                     <div class="page-header">
                         <div class="page-header-info">
-                            <h2>Dönemler</h2>
-                            <p>Eğitim dönemlerini yönetin</p>
+                            <h2 data-i18n="terms.title">Dönemler</h2>
+                            <p data-i18n="terms.description">Eğitim dönemlerini yönetin</p>
                         </div>
                         <button class="btn btn-primary" onclick="addNewTerm()">
                             <i class="fas fa-plus"></i>
-                            Yeni Dönem
+                            <span data-i18n="terms.newTermButton">Yeni Dönem</span>
                         </button>
                     </div>
 
@@ -262,42 +269,42 @@
                     <div class="filters-section">
                         <!-- Status Filters -->
                         <div class="filter-group">
-                            <label class="filter-label">Durum:</label>
+                            <label class="filter-label" data-i18n="terms.statusLabel">Durum:</label>
                             <div class="filter-tabs">
-                                <button class="filter-tab active" data-filter="all" data-type="status">Tümü</button>
-                                <button class="filter-tab" data-filter="Aktif" data-type="status">Aktif</button>
-                                <button class="filter-tab" data-filter="Yaklaşan" data-type="status">Yaklaşan</button>
+                                <button class="filter-tab active" data-filter="all" data-type="status" data-i18n="terms.statusAll">Tümü</button>
+                                <button class="filter-tab" data-filter="Aktif" data-type="status" data-i18n="terms.statusActive">Aktif</button>
+                                <button class="filter-tab" data-filter="Yaklaşan" data-type="status" data-i18n="terms.statusUpcoming">Yaklaşan</button>
                                 <button class="filter-tab" data-filter="Tamamlandı"
-                                    data-type="status">Tamamlandı</button>
+                                    data-type="status" data-i18n="terms.statusCompleted">Tamamlandı</button>
                             </div>
                         </div>
 
                         <!-- Type Filters -->
                         <div class="filter-group">
-                            <label class="filter-label">Tür:</label>
+                            <label class="filter-label" data-i18n="terms.typeLabel">Tür:</label>
                             <div class="filter-tabs">
-                                <button class="filter-tab active" data-filter="all" data-type="type">Tümü</button>
-                                <button class="filter-tab" data-filter="Temel" data-type="type">Temel</button>
-                                <button class="filter-tab" data-filter="Yenileme" data-type="type">Yenileme</button>
+                                <button class="filter-tab active" data-filter="all" data-type="type" data-i18n="terms.typeAll">Tümü</button>
+                                <button class="filter-tab" data-filter="Temel" data-type="type" data-i18n="terms.typeBasic">Temel</button>
+                                <button class="filter-tab" data-filter="Yenileme" data-type="type" data-i18n="terms.typeRenewal">Yenileme</button>
                             </div>
                         </div>
 
                         <!-- Sort Options -->
                         <div class="filter-group">
-                            <label class="filter-label">Sırala:</label>
+                            <label class="filter-label" data-i18n="terms.sortLabel">Sırala:</label>
                             <select class="sort-select" id="sortSelect">
-                                <option value="date_newest">En Yeni Başlangıç Tarihi</option>
-                                <option value="date_oldest">En Eski Başlangıç Tarihi</option>
-                                <option value="students_desc">Öğrenci Sayısı (Fazla → Az)</option>
-                                <option value="students_asc">Öğrenci Sayısı (Az → Fazla)</option>
-                                <option value="term_number_desc">Dönem No (Büyük → Küçük)</option>
-                                <option value="term_number_asc">Dönem No (Küçük → Büyük)</option>
+                                <option value="date_newest" data-i18n="terms.sortDateNewest">En Yeni Başlangıç Tarihi</option>
+                                <option value="date_oldest" data-i18n="terms.sortDateOldest">En Eski Başlangıç Tarihi</option>
+                                <option value="students_desc" data-i18n="terms.sortStudentsDesc">Öğrenci Sayısı (Fazla → Az)</option>
+                                <option value="students_asc" data-i18n="terms.sortStudentsAsc">Öğrenci Sayısı (Az → Fazla)</option>
+                                <option value="term_number_desc" data-i18n="terms.sortTermNumberDesc">Dönem No (Büyük → Küçük)</option>
+                                <option value="term_number_asc" data-i18n="terms.sortTermNumberAsc">Dönem No (Küçük → Büyük)</option>
                             </select>
                         </div>
 
                         <!-- Search -->
                         <div class="filter-group">
-                            <label class="filter-label">Ara:</label>
+                            <label class="filter-label" data-i18n="terms.searchLabel">Ara:</label>
                             <div class="advanced-search">
                                 <i class="fas fa-search"></i>
                                 <input type="text" placeholder="Dönem no, tür veya durum ara..." id="termsSearchInput">
@@ -314,13 +321,13 @@
                             <table class="terms-table" id="termsTable">
                                 <thead>
                                     <tr>
-                                        <th>Dönem No</th>
-                                        <th>Dönem Türü</th>
-                                        <th>Durum</th>
-                                        <th>Öğrenci Sayısı</th>
-                                        <th>Başlangıç Tarihi</th>
-                                        <th>Bitiş Tarihi</th>
-                                        <th>İşlemler</th>
+                                        <th data-i18n="terms.termNumber">Dönem No</th>
+                                        <th data-i18n="terms.termType">Dönem Türü</th>
+                                        <th data-i18n="terms.status">Durum</th>
+                                        <th data-i18n="terms.studentCount">Öğrenci Sayısı</th>
+                                        <th data-i18n="terms.startDate">Başlangıç Tarihi</th>
+                                        <th data-i18n="terms.endDate">Bitiş Tarihi</th>
+                                        <th data-i18n="terms.actions">İşlemler</th>
                                     </tr>
                                 </thead>
                                 <tbody id="termsTableBody">
@@ -335,8 +342,8 @@
                 <div class="page-content" id="students-content">
                     <div class="placeholder-content">
                         <i class="fas fa-users"></i>
-                        <h3>Öğrenciler</h3>
-                        <p>Bu sayfa yakında gelecek...</p>
+                        <h3 data-i18n="students.title">Öğrenciler</h3>
+                        <p data-i18n="students.comingSoon">Bu sayfa yakında gelecek...</p>
                     </div>
                 </div>
 
@@ -345,8 +352,8 @@
                     <!-- Page Header -->
                     <div class="page-header">
                         <div class="page-header-info">
-                            <h2>Ödemeler</h2>
-                            <p>Öğrenci ödemelerini yönetin ve takip edin</p>
+                            <h2 data-i18n="payments.title">Ödemeler</h2>
+                            <p data-i18n="payments.description">Öğrenci ödemelerini yönetin ve takip edin</p>
                         </div>
                         <div class="header-actions">
                             <button class="btn btn-secondary" onclick="exportPayments()">
@@ -361,7 +368,7 @@
                         <div class="stat-card">
                             <div class="stat-card-content">
                                 <div class="stat-info">
-                                    <h3>Toplam Ödeme</h3>
+                                    <h3 data-i18n="payments.totalPayments">Toplam Ödeme</h3>
                                     <div class="stat-value">₺248,750</div>
                                     <div class="stat-trend positive">
                                         <i class="fas fa-trending-up"></i>
@@ -377,7 +384,7 @@
                         <div class="stat-card">
                             <div class="stat-card-content">
                                 <div class="stat-info">
-                                    <h3>Bekleyen Ödemeler</h3>
+                                    <h3 data-i18n="payments.pendingPayments">Bekleyen Ödemeler</h3>
                                     <div class="stat-value">₺52,400</div>
                                     <div class="stat-trend negative">
                                         <i class="fas fa-clock"></i>
@@ -428,7 +435,7 @@
                         <div class="filters-grid">
                             <!-- Öğrenci Arama -->
                             <div class="filter-group">
-                                <label for="studentSearch">Öğrenci Ara</label>
+                                <label for="studentSearch" data-i18n="filters.studentSearch">Öğrenci Ara</label>
                                 <input type="text" id="studentSearch" class="filter-input"
                                     placeholder="Ad, soyad veya TC ile ara..." onkeyup="applyPaymentFilters()"
                                     style="width: 155px; height: 36px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px;">
@@ -436,48 +443,48 @@
 
                             <!-- Dönem Filtresi -->
                             <div class="filter-group">
-                                <label for="termFilter">Dönem</label>
+                                <label for="termFilter" data-i18n="filters.termFilter">Dönem</label>
                                 <select id="termFilter" class="filter-select" onchange="applyPaymentFilters()">
-                                    <option value="">Tüm Dönemler</option>
+                                    <option value="" data-i18n="filters.allTerms">Tüm Dönemler</option>
                                     <!-- JavaScript ile doldurulacak -->
                                 </select>
                             </div>
 
                             <!-- Durum Filtresi -->
                             <div class="filter-group">
-                                <label for="statusFilter">Ödeme Durumu</label>
+                                <label for="statusFilter" data-i18n="filters.paymentStatus">Ödeme Durumu</label>
                                 <select id="statusFilter" class="filter-select" onchange="applyPaymentFilters()">
-                                    <option value="">Tüm Durumlar</option>
-                                    <option value="odendi">Ödendi</option>
-                                    <option value="bekliyor">Bekliyor</option>
-                                    <option value="geciken">Geciken</option>
+                                    <option value="" data-i18n="filters.allStatuses">Tüm Durumlar</option>
+                                    <option value="odendi" data-i18n="filters.paid">Ödendi</option>
+                                    <option value="bekliyor" data-i18n="filters.pending">Bekliyor</option>
+                                    <option value="geciken" data-i18n="filters.overdue">Geciken</option>
                                 </select>
                             </div>
 
                             <!-- Ödeme Türü -->
                             <div class="filter-group">
-                                <label for="paymentTypeFilter">Ödeme Türü</label>
+                                <label for="paymentTypeFilter" data-i18n="filters.paymentType">Ödeme Türü</label>
                                 <select id="paymentTypeFilter" class="filter-select" onchange="applyPaymentFilters()">
-                                    <option value="">Tümü</option>
-                                    <option value="tam">Tam Ödeme</option>
-                                    <option value="taksit">Taksit</option>
+                                    <option value="" data-i18n="filters.allPaymentTypes">Tümü</option>
+                                    <option value="tam" data-i18n="filters.fullPayment">Tam Ödeme</option>
+                                    <option value="taksit" data-i18n="filters.installment">Taksit</option>
                                 </select>
                             </div>
 
                             <!-- Ödeme Yöntemi -->
                             <div class="filter-group">
-                                <label for="paymentMethodFilter">Ödeme Yöntemi</label>
+                                <label for="paymentMethodFilter" data-i18n="filters.paymentMethod">Ödeme Yöntemi</label>
                                 <select id="paymentMethodFilter" class="filter-select" onchange="applyPaymentFilters()">
-                                    <option value="">Tümü</option>
-                                    <option value="nakit">Nakit</option>
-                                    <option value="kart">Kart</option>
-                                    <option value="havale">Havale</option>
+                                    <option value="" data-i18n="filters.allPaymentMethods">Tümü</option>
+                                    <option value="nakit" data-i18n="filters.cash">Nakit</option>
+                                    <option value="kart" data-i18n="filters.card">Kart</option>
+                                    <option value="havale" data-i18n="filters.bankTransfer">Havale</option>
                                 </select>
                             </div>
 
                             <!-- Tarih Aralığı -->
                             <div class="filter-group">
-                                <label for="dateRange">Tarih Aralığı</label>
+                                <label for="dateRange" data-i18n="filters.dateRange">Tarih Aralığı</label>
                                 <input type="text" id="dateRange" class="filter-input"
                                     placeholder="Tarih aralığı seçin...">
                             </div>
@@ -505,7 +512,7 @@
                         <div class="table-header">
                             <div class="table-title">
                                 <i class="fas fa-table"></i>
-                                <span>Ödeme Listesi</span>
+                                <span data-i18n="payments.paymentList">Ödeme Listesi</span>
                                 <span class="table-count" id="paymentsCount">(0)</span>
                             </div>
                             <div class="table-actions">
@@ -520,14 +527,14 @@
                             <table class="payments-table">
                                 <thead>
                                     <tr>
-                                        <th>Öğrenci</th>
-                                        <th>Dönem</th>
-                                        <th>Ödeme Tutarı</th>
-                                        <th>Ödeme Tarihi</th>
-                                        <th>Ödeme Yöntemi</th>
-                                        <th>Ödeme Türü</th>
-                                        <th>Notlar</th>
-                                        <th>İşlemler</th>
+                                        <th data-i18n="payments.student">Öğrenci</th>
+                                        <th data-i18n="payments.term">Dönem</th>
+                                        <th data-i18n="payments.amount">Ödeme Tutarı</th>
+                                        <th data-i18n="payments.date">Ödeme Tarihi</th>
+                                        <th data-i18n="payments.method">Ödeme Yöntemi</th>
+                                        <th data-i18n="payments.type">Ödeme Türü</th>
+                                        <th data-i18n="payments.notes">Notlar</th>
+                                        <th data-i18n="payments.actions">İşlemler</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -543,8 +550,8 @@
                     <!-- Page Header -->
                     <div class="page-header">
                         <div class="page-header-info">
-                            <h2>Bildirimler</h2>
-                            <p>Sistem bildirimlerini yönetin ve takip edin</p>
+                            <h2 data-i18n="notifications.title">Bildirimler</h2>
+                            <p data-i18n="notifications.description">Sistem bildirimlerini yönetin ve takip edin</p>
                         </div>
                         <div class="header-actions">
                             <button class="btn btn-secondary" onclick="runManualNotificationCheck()">
@@ -563,7 +570,7 @@
                         <div class="stat-card">
                             <div class="stat-card-content">
                                 <div class="stat-info">
-                                    <h3>Toplam Bildirim</h3>
+                                    <h3 data-i18n="notifications.total">Toplam Bildirim</h3>
                                     <div class="stat-value" id="totalNotifications">0</div>
                                     <div class="stat-trend neutral">
                                         <i class="fas fa-bell"></i>
@@ -579,7 +586,7 @@
                         <div class="stat-card">
                             <div class="stat-card-content">
                                 <div class="stat-info">
-                                    <h3>Okunmamış</h3>
+                                    <h3 data-i18n="notifications.unread">Okunmamış</h3>
                                     <div class="stat-value" id="unreadNotifications">0</div>
                                     <div class="stat-trend negative">
                                         <i class="fas fa-exclamation-circle"></i>
@@ -595,7 +602,7 @@
                         <div class="stat-card">
                             <div class="stat-card-content">
                                 <div class="stat-info">
-                                    <h3>Acil Durumlar</h3>
+                                    <h3 data-i18n="notifications.urgent">Acil Durumlar</h3>
                                     <div class="stat-value" id="urgentNotifications">0</div>
                                     <div class="stat-trend negative">
                                         <i class="fas fa-exclamation-triangle"></i>
@@ -611,7 +618,7 @@
                         <div class="stat-card">
                             <div class="stat-card-content">
                                 <div class="stat-info">
-                                    <h3>Bugün</h3>
+                                    <h3 data-i18n="notifications.today">Bugün</h3>
                                     <div class="stat-value" id="todayNotifications">0</div>
                                     <div class="stat-trend positive">
                                         <i class="fas fa-calendar-day"></i>
@@ -629,19 +636,19 @@
                     <div class="filters-section">
                         <!-- Tür Filtreleri -->
                         <div class="filter-group">
-                            <label class="filter-label">Tür:</label>
+                            <label class="filter-label" data-i18n="filters.type">Tür:</label>
                             <div class="filter-tabs">
-                                <button class="filter-tab active" data-filter="all" data-type="type">Tümü</button>
-                                <button class="filter-tab" data-filter="egitim" data-type="type">
+                                <button class="filter-tab active" data-filter="all" data-type="type" data-i18n="filters.all">Tümü</button>
+                                <button class="filter-tab" data-filter="egitim" data-type="type" data-i18n="filters.education">
                                     <i class="fas fa-graduation-cap"></i> Eğitim
                                 </button>
-                                <button class="filter-tab" data-filter="odeme" data-type="type">
+                                <button class="filter-tab" data-filter="odeme" data-type="type" data-i18n="filters.payment">
                                     <i class="fas fa-credit-card"></i> Ödeme
                                 </button>
-                                <button class="filter-tab" data-filter="belge" data-type="type">
+                                <button class="filter-tab" data-filter="belge" data-type="type" data-i18n="filters.document">
                                     <i class="fas fa-file-alt"></i> Belge
                                 </button>
-                                <button class="filter-tab" data-filter="kimlik_suresi" data-type="type">
+                                <button class="filter-tab" data-filter="kimlik_suresi" data-type="type" data-i18n="filters.identity_duration">
                                     <i class="fas fa-id-card"></i> Kimlik Süresi
                                 </button>
                             </div>
@@ -649,13 +656,13 @@
 
                         <!-- Durum Filtreleri -->
                         <div class="filter-group">
-                            <label class="filter-label">Durum:</label>
+                            <label class="filter-label" data-i18n="filters.status">Durum:</label>
                             <div class="filter-tabs">
-                                <button class="filter-tab active" data-filter="all" data-type="status">Tümü</button>
-                                <button class="filter-tab" data-filter="okunmamis" data-type="status">
+                                <button class="filter-tab active" data-filter="all" data-type="status" data-i18n="filters.all">Tümü</button>
+                                <button class="filter-tab" data-filter="okunmamis" data-type="status" data-i18n="filters.unread">
                                     <i class="fas fa-eye-slash"></i> Okunmamış
                                 </button>
-                                <button class="filter-tab" data-filter="okunmus" data-type="status">
+                                <button class="filter-tab" data-filter="okunmus" data-type="status" data-i18n="filters.read">
                                     <i class="fas fa-eye"></i> Okunmuş
                                 </button>
                             </div>
@@ -663,16 +670,16 @@
 
                         <!-- Öncelik Filtreleri -->
                         <div class="filter-group">
-                            <label class="filter-label">Öncelik:</label>
+                            <label class="filter-label" data-i18n="filters.priority">Öncelik:</label>
                             <div class="filter-tabs">
-                                <button class="filter-tab active" data-filter="all" data-type="priority">Tümü</button>
-                                <button class="filter-tab" data-filter="acil" data-type="priority">
+                                <button class="filter-tab active" data-filter="all" data-type="priority" data-i18n="filters.all">Tümü</button>
+                                <button class="filter-tab" data-filter="acil" data-type="priority" data-i18n="filters.urgent">
                                     <i class="fas fa-exclamation-triangle"></i> Acil
                                 </button>
-                                <button class="filter-tab" data-filter="onemli" data-type="priority">
+                                <button class="filter-tab" data-filter="onemli" data-type="priority" data-i18n="filters.important">
                                     <i class="fas fa-exclamation-circle"></i> Önemli
                                 </button>
-                                <button class="filter-tab" data-filter="bilgi" data-type="priority">
+                                <button class="filter-tab" data-filter="bilgi" data-type="priority" data-i18n="filters.info">
                                     <i class="fas fa-info-circle"></i> Bilgi
                                 </button>
                             </div>
@@ -698,7 +705,7 @@
                         <div id="notifications-loading"
                             style="text-align: center; padding: 40px; color: #6b7280; display: block;">
                             <i class="fas fa-spinner fa-spin" style="font-size: 24px; margin-bottom: 12px;"></i>
-                            <div>Bildirimler yükleniyor...</div>
+                            <div data-i18n="notifications.loading">Bildirimler yükleniyor...</div>
                         </div>
 
                         <!-- Empty State -->
@@ -706,8 +713,8 @@
                             style="text-align: center; padding: 60px; color: #6b7280; display: none;">
                             <i class="fas fa-bell-slash"
                                 style="font-size: 48px; margin-bottom: 16px; color: #d1d5db;"></i>
-                            <h3 style="margin-bottom: 8px;">Bildirim bulunamadı</h3>
-                            <p>Henüz hiç bildirim oluşturulmamış veya filtrelerinizle eşleşen bildirim yok.</p>
+                            <h3 style="margin-bottom: 8px;" data-i18n="notifications.empty.title">Bildirim bulunamadı</h3>
+                            <p data-i18n="notifications.empty.message">Henüz hiç bildirim oluşturulmamış veya filtrelerinizle eşleşen bildirim yok.</p>
                             <button class="btn btn-primary" onclick="runManualNotificationCheck()"
                                 style="margin-top: 16px;">
                                 <i class="fas fa-sync"></i>
@@ -743,7 +750,7 @@
                                 <i class="fas fa-chevron-left"></i>
                             </button>
                             <div class="pagination-info">
-                                <span id="currentPageInfo">Sayfa 1 / 1</span>
+                                <span id="currentPageInfo" data-i18n="pagination.pageInfo">Sayfa 1 / 1</span>
                             </div>
                             <button class="pagination-btn" id="nextPageBtn" onclick="changePage(1)">
                                 <i class="fas fa-chevron-right"></i>
@@ -789,7 +796,7 @@
         <div class="modal-container">
             <div class="modal-header">
                 <h2>
-                    <i class="fas fa-plus-circle"></i>
+                    <i class="fas fa-plus-circle" data-i18n="modals.addTerm.title"></i>
                     Yeni Dönem Ekle
                 </h2>
                 <button class="modal-close" onclick="closeAddTermModal()">
@@ -807,12 +814,12 @@
                     <!-- Dönem Numarası -->
                     <div class="form-group">
                         <label for="termNumber" class="form-label">
-                            <i class="fas fa-hashtag"></i>
+                            <i class="fas fa-hashtag" data-i18n="modals.addTerm.termNumber"></i>
                             Dönem Numarası
                         </label>
                         <input type="number" id="termNumber" name="donem_numara" class="form-input"
                             placeholder="Örn: 2024001" required min="1">
-                        <small class="form-help">Benzersiz bir dönem numarası girin</small>
+                        <small class="form-help" data-i18n="modals.addTerm.termNumberHelp">Benzersiz bir dönem numarası girin</small>
                     </div>
 
                     <!-- Dönem Türü -->
@@ -822,43 +829,43 @@
                             Dönem Türü
                         </label>
                         <select id="termType" name="donem_turu" class="form-select" required>
-                            <option value="">Seçiniz...</option>
-                            <option value="Temel">📚 Temel Eğitim</option>
-                            <option value="Yenileme">🔄 Yenileme Eğitimi</option>
+                            <option value="" data-i18n="modals.addTerm.selectOption">Seçiniz...</option>
+                            <option value="Temel" data-i18n="modals.addTerm.basicTraining">📚 Temel Eğitim</option>
+                            <option value="Yenileme" data-i18n="modals.addTerm.renewalTraining">🔄 Yenileme Eğitimi</option>
                         </select>
                     </div>
 
                     <!-- Öğrenci Sayısı - Sadece düzenleme modunda görünür -->
                     <div class="form-group" style="display: none;">
                         <label for="studentCount" class="form-label">
-                            <i class="fas fa-users"></i>
+                            <i class="fas fa-users" data-i18n="modals.addTerm.studentCount"></i>
                             Kayıtlı Öğrenci Sayısı
                         </label>
                         <input type="number" id="studentCount" name="donem_ogr_adedi" class="form-input" placeholder="0"
                             min="0" max="500" disabled>
-                        <small class="form-help">Bu alan sadece görüntüleme içindir</small>
+                        <small class="form-help" data-i18n="modals.addTerm.studentCountHelp">Bu alan sadece görüntüleme içindir</small>
                     </div>
 
                     <!-- Tarih Aralığı -->
                     <div class="form-row">
                         <div class="form-group">
                             <label for="startDate" class="form-label">
-                                <i class="fas fa-calendar-plus"></i>
+                                <i class="fas fa-calendar-plus" data-i18n="modals.addTerm.startDate"></i>
                                 Başlangıç Tarihi
                             </label>
                             <input type="text" id="startDate" name="donem_baslangic_t" class="form-input date-picker"
                                 placeholder="Gün/Ay/Yıl seçin" readonly required>
-                            <small class="form-help">Dönem başlangıç tarihini seçin</small>
+                            <small class="form-help" data-i18n="modals.addTerm.startDateHelp">Dönem başlangıç tarihini seçin</small>
                         </div>
 
                         <div class="form-group">
                             <label for="endDate" class="form-label">
-                                <i class="fas fa-calendar-check"></i>
+                                <i class="fas fa-calendar-check" data-i18n="modals.addTerm.endDate"></i>
                                 Bitiş Tarihi
                             </label>
                             <input type="text" id="endDate" name="donem_bitis_t" class="form-input date-picker"
                                 placeholder="Gün/Ay/Yıl seçin" readonly required>
-                            <small class="form-help">Dönem bitiş tarihini seçin</small>
+                            <small class="form-help" data-i18n="modals.addTerm.endDateHelp">Dönem bitiş tarihini seçin</small>
                         </div>
                     </div>
 
@@ -866,31 +873,31 @@
                     <div class="modal-quick-stats" id="modalQuickStats" style="display: none;">
                         <div class="quick-stat">
                             <span class="quick-stat-value" id="termDurationStat">0</span>
-                            <span class="quick-stat-label">Gün</span>
+                            <span class="quick-stat-label" data-i18n="modals.addTerm.termDuration">Gün</span>
                         </div>
                         <div class="quick-stat">
                             <span class="quick-stat-value" id="studentsPerDayStat">0</span>
-                            <span class="quick-stat-label">Öğr/Gün</span>
+                            <span class="quick-stat-label" data-i18n="modals.addTerm.studentsPerDay">Öğr/Gün</span>
                         </div>
                         <div class="quick-stat">
                             <span class="quick-stat-value" id="completionRateStat">0%</span>
-                            <span class="quick-stat-label">Tamamlanma</span>
+                            <span class="quick-stat-label" data-i18n="modals.addTerm.completionRate">Tamamlanma</span>
                         </div>
                     </div>
 
                     <!-- Form Validation Info -->
                     <div class="form-info">
                         <div class="info-item">
-                            <i class="fas fa-lightbulb"></i>
-                            <span>Dönem durumu tarihlere göre otomatik hesaplanacak</span>
+                            <i class="fas fa-lightbulb" data-i18n="modals.addTerm.termStatusInfo"></i>
+                            <span data-i18n="modals.addTerm.termStatusInfo">Dönem durumu tarihlere göre otomatik hesaplanacak</span>
                         </div>
                         <div class="info-item">
-                            <i class="fas fa-users"></i>
-                            <span>Öğrenci sayısı dönem içine kayıt yapıldıkça artacak</span>
+                            <i class="fas fa-users" data-i18n="modals.addTerm.studentCountInfo"></i>
+                            <span data-i18n="modals.addTerm.studentCountInfo">Öğrenci sayısı dönem içine kayıt yapıldıkça artacak</span>
                         </div>
                         <div class="info-item">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            <span>Dönem numarası benzersiz olmalıdır</span>
+                            <i class="fas fa-exclamation-triangle" data-i18n="modals.addTerm.termNumberUnique"></i>
+                            <span data-i18n="modals.addTerm.termNumberUnique">Dönem numarası benzersiz olmalıdır</span>
                         </div>
                     </div>
                 </form>
@@ -898,11 +905,11 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" onclick="closeAddTermModal()">
-                    <i class="fas fa-times"></i>
+                    <i class="fas fa-times" data-i18n="modals.addTerm.cancelBtn"></i>
                     İptal
                 </button>
                 <button type="submit" form="addTermForm" class="btn btn-primary" id="saveTermBtn">
-                    <i class="fas fa-save"></i>
+                    <i class="fas fa-save" data-i18n="modals.addTerm.saveTermBtn"></i>
                     Dönem Ekle
                 </button>
             </div>
