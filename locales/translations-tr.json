@@ -1,0 +1,187 @@
+{
+  "app": {
+    "title": "Pergamon Güvenlik Okulu",
+    "subtitle": "Yönetim Sistemi",
+    "logoAbbr": "GÜ"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "students": "Öğrenciler",
+    "terms": "Dönemler",
+    "payments": "Ödemeler",
+    "notifications": "Bildirimler",
+    "settings": "Ayarlar"
+  },
+  "pages": {
+    "dashboard": {
+      "title": "Dashboard",
+      "description": "Genel sistem durumunu görüntüleyin"
+    },
+    "students": {
+      "title": "Öğrenciler",
+      "description": "Öğrenci bilgilerini yönetin"
+    },
+    "terms": {
+      "title": "Dönemler",
+      "description": "Eğitim dönemlerini yönetin",
+      "addTerm": "Yeni Dönem Ekle",
+      "termCode": "Dönem Kodu",
+      "termName": "Dönem Adı",
+      "startDate": "Başlangıç Tarihi",
+      "endDate": "Bitiş Tarihi",
+      "capacity": "Kapasite",
+      "enrolled": "Kayıtlı",
+      "status": "Durum",
+      "actions": "İşlemler"
+    },
+    "termDetail": {
+      "title": "Dönem Detayları",
+      "description": "Dönem öğrencilerini yönetin",
+      "backToTerms": "Dönemlere Dön",
+      "addStudent": "Öğrenci Ekle",
+      "studentCount": "öğrenci",
+      "overview": "Genel Bakış",
+      "students": "Öğrenciler",
+      "documents": "Belgeler",
+      "payments": "Ödemeler"
+    },
+    "payments": {
+      "title": "Ödemeler",
+      "description": "Ödeme işlemlerini takip edin",
+      "totalAmount": "Toplam Tutar",
+      "paidAmount": "Ödenen",
+      "pendingAmount": "Bekleyen",
+      "addPayment": "Ödeme Ekle"
+    },
+    "notifications": {
+      "title": "Bildirimler",
+      "description": "Bildirimlerinizi yönetin",
+      "markAllRead": "Tümünü Okundu İşaretle",
+      "deleteAll": "Tümünü Sil"
+    },
+    "settings": {
+      "title": "Ayarlar",
+      "description": "Sistem ayarlarını yapılandırın"
+    }
+  },
+  "common": {
+    "search": "Ara...",
+    "filter": "Filtre",
+    "sort": "Sırala",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "view": "Görüntüle",
+    "close": "Kapat",
+    "add": "Ekle",
+    "update": "Güncelle",
+    "submit": "Gönder",
+    "clear": "Temizle",
+    "all": "Tümü",
+    "active": "Aktif",
+    "inactive": "Pasif",
+    "pending": "Beklemede",
+    "completed": "Tamamlandı",
+    "yes": "Evet",
+    "no": "Hayır",
+    "loading": "Yükleniyor...",
+    "noData": "Veri bulunamadı",
+    "error": "Hata",
+    "success": "Başarılı",
+    "warning": "Uyarı",
+    "info": "Bilgi"
+  },
+  "student": {
+    "tcNo": "TC Kimlik No",
+    "firstName": "Ad",
+    "lastName": "Soyad",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "birthDate": "Doğum Tarihi",
+    "address": "Adres",
+    "enrollmentDate": "Kayıt Tarihi",
+    "status": "Durum",
+    "trainingType": "Eğitim Türü",
+    "weaponType": "Silah Türü",
+    "documents": "Belgeler",
+    "missingDocuments": "Eksik Belgeler",
+    "allDocumentsComplete": "Tüm Belgeler Tamamlandı"
+  },
+  "trainingTypes": {
+    "ilkDefa": "İlk Defa",
+    "yenileme": "Yenileme"
+  },
+  "weaponTypes": {
+    "tabanca": "Tabanca",
+    "tufek": "Tüfek",
+    "her_ikisi": "Her İkisi"
+  },
+  "documentTypes": {
+    "kimlik": "Kimlik Fotokopisi",
+    "ikametgah": "İkametgah Belgesi",
+    "sabika": "Sabıka Kaydı",
+    "saglik": "Sağlık Raporu",
+    "foto": "Vesikalık Fotoğraf",
+    "diploma": "Diploma/Öğrenci Belgesi",
+    "askerlik": "Askerlik Belgesi"
+  },
+  "statusTypes": {
+    "active": "Aktif",
+    "completed": "Tamamlandı",
+    "dropped": "Ayrıldı",
+    "pending": "Beklemede"
+  },
+  "payment": {
+    "amount": "Tutar",
+    "paidAmount": "Ödenen Tutar",
+    "remainingAmount": "Kalan Tutar",
+    "paymentDate": "Ödeme Tarihi",
+    "paymentMethod": "Ödeme Yöntemi",
+    "description": "Açıklama",
+    "receipt": "Makbuz No",
+    "installment": "Taksit",
+    "cash": "Nakit",
+    "creditCard": "Kredi Kartı",
+    "bankTransfer": "Banka Transferi"
+  },
+  "filters": {
+    "all": "Tümü",
+    "active": "Aktif",
+    "completed": "Tamamlandı",
+    "upcoming": "Yaklaşan",
+    "past": "Geçmiş",
+    "pending": "Bekleyen",
+    "paid": "Ödendi",
+    "partiallyPaid": "Kısmi Ödendi",
+    "unpaid": "Ödenmedi",
+    "allDocuments": "Tüm Belgeler",
+    "complete": "Eksiksiz",
+    "incomplete": "Eksik"
+  },
+  "sort": {
+    "dateNewest": "Tarih (Yeni → Eski)",
+    "dateOldest": "Tarih (Eski → Yeni)",
+    "nameAZ": "İsim (A → Z)",
+    "nameZA": "İsim (Z → A)",
+    "amountHighLow": "Tutar (Yüksek → Düşük)",
+    "amountLowHigh": "Tutar (Düşük → Yüksek)"
+  },
+  "validation": {
+    "required": "Bu alan zorunludur",
+    "invalidTC": "Geçersiz TC Kimlik No",
+    "invalidEmail": "Geçersiz e-posta adresi",
+    "invalidPhone": "Geçersiz telefon numarası",
+    "invalidDate": "Geçersiz tarih",
+    "minLength": "En az {0} karakter olmalıdır",
+    "maxLength": "En fazla {0} karakter olmalıdır"
+  },
+  "messages": {
+    "deleteConfirm": "Silmek istediğinizden emin misiniz?",
+    "saveSuccess": "Kayıt başarılı",
+    "updateSuccess": "Güncelleme başarılı",
+    "deleteSuccess": "Silme başarılı",
+    "error": "Bir hata oluştu",
+    "noChanges": "Değişiklik yapılmadı"
+  }
+}
