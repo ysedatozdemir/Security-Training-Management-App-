@@ -27,7 +27,9 @@
       "target": [
         {
           "target": "nsis",
-          "arch": ["x64"]
+          "arch": [
+            "x64"
+          ]
         }
       ],
       "forceCodeSigning": false
@@ -46,7 +48,9 @@
     "electron-builder": "^26.0.12"
   },
   "dependencies": {
+    "dotenv": "^17.2.3",
     "flatpickr": "^4.6.13",
-    "mariadb": "^3.4.5"
+    "mariadb": "^3.4.5",
+    "mssql": "^12.1.1"
   }
 }

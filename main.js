@@ -1,60 +1,96 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
-const mariadb = require('mariadb');
+require('dotenv').config();
 
-// --------------------
-// MariaDB Connection Pool
-// --------------------
+// Veritabanı tipine göre modül yükle
+const DB_TYPE = process.env.DB_TYPE || 'mariadb';
+
 let pool = null;
 let isPoolClosed = false;
 
-function createPool() {
-  if (!pool && !isPoolClosed) {
-    pool = mariadb.createPool({
-      host: 'localhost',
-      user: 'root',
-      password: 'root',
-      //host: '192.168.1.50',
-      //user: 'pergamon',
-      //password: 'Sirket123',
-      database: 'pergamon',
-      connectionLimit: 20,
-      acquireTimeout: 10000,
-      timeout: 10000
-    });
-
-    console.log('📊 MariaDB pool oluşturuldu');
+if (DB_TYPE === 'mariadb') {
+  // MariaDB kullan
+  const mariadb = require('mariadb');
+  
+  function createPool() {
+    if (!pool && !isPoolClosed) {
+      pool = mariadb.createPool({
+        host: process.env.MARIADB_HOST || 'localhost',
+        user: process.env.MARIADB_USER || 'root',
+        password: process.env.MARIADB_PASSWORD || 'root',
+        database: process.env.MARIADB_DATABASE || 'pergamon',
+        connectionLimit: 20
+      });
+      console.log('✅ MariaDB pool oluşturuldu (LOCAL)');
+    }
+    return pool;
   }
-  return pool;
-}
-
-async function testDBConnection() {
-  try {
-    const currentPool = createPool();
-    const conn = await currentPool.getConnection();
-    console.log('✅ MariaDB bağlantısı başarılı!');
-    conn.release();
-  } catch (err) {
-    console.error('❌ MariaDB bağlantı hatası:', err);
-  }
-}
-
-async function closePool() {
-  if (pool && !isPoolClosed) {
+  
+  async function runQuery(query, params = []) {
+    let conn;
     try {
-      console.log('🔄 Pool kapatılıyor...');
-      await pool.end();
-      isPoolClosed = true;
-      pool = null;
-      console.log('✅ Pool başarıyla kapatıldı');
-    } catch (error) {
-      console.error('❌ Pool kapatılırken hata:', error.message);
-      // Pool zaten kapalıysa, sadece durumu güncelle
-      if (error.code === 'ER_POOL_ALREADY_CLOSED') {
-        isPoolClosed = true;
-        pool = null;
-        console.log('ℹ️ Pool zaten kapalıydı, durum güncellendi');
+      const currentPool = createPool();
+      conn = await currentPool.getConnection();
+      const rows = await conn.query(query, params);
+      return rows;
+    } catch (err) {
+      console.error("❌ MariaDB hatası:", err);
+      return { error: err.message };
+    } finally {
+      if (conn) conn.release();
+    }
+  }
+  
+} else if (DB_TYPE === 'azure') {
+  // Azure SQL kullan
+  const sql = require('mssql');
+  
+  const sqlConfig = {
+    server: process.env.AZURE_SQL_SERVER,
+    database: process.env.AZURE_SQL_DATABASE,
+    user: process.env.AZURE_SQL_USER,
+    password: process.env.AZURE_SQL_PASSWORD,
+    port: parseInt(process.env.AZURE_SQL_PORT || '1433'),
+    options: {
+      encrypt: true,
+      trustServerCertificate: false,
+      enableArithAbort: true
+    },
+    pool: { max: 10, min: 0 }
+  };
+  
+  async function createPool() {
+    if (!pool && !isPoolClosed) {
+      try {
+        pool = await sql.connect(sqlConfig);
+        console.log('✅ Azure SQL pool oluşturuldu (CLOUD)');
+      } catch (err) {
+        console.error('❌ Azure SQL hatası:', err);
+        throw err;
       }
+    }
+    return pool;
+  }
+  
+  async function runQuery(query, params = []) {
+    try {
+      const currentPool = await createPool();
+      const request = currentPool.request();
+      
+      // Parametreleri ekle
+      params.forEach((param, index) => {
+        request.input(`param${index}`, param);
+      });
+      
+      // ? -> @param0, @param1 dönüşümü
+      let paramIndex = 0;
+      const convertedQuery = query.replace(/\?/g, () => `@param${paramIndex++}`);
+      
+      const result = await request.query(convertedQuery);
+      return result.recordset || [];
+    } catch (err) {
+      console.error("❌ Azure SQL hatası:", err);
+      return { error: err.message };
     }
   }
 }
